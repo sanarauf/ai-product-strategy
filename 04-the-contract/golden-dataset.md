@@ -1,6 +1,6 @@
 # Golden Dataset & Reliability Contract
 
-## Golden Dataset Spec
+## Golden Dataset
 > Ground-truth test suite used as ship-blocking evaluation infrastructure.
 > Target v1 release size: ~150 rows. Current baseline: 10 representative rows.
 
