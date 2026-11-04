@@ -1,8 +1,6 @@
 # Golden Dataset & Reliability Contract
 
 ## Golden Dataset Spec
-# Golden Dataset Spec
-
 > Ground-truth test suite used as ship-blocking evaluation infrastructure.
 > Target v1 release size: ~150 rows. Current baseline: 10 representative rows.
 
@@ -67,17 +65,27 @@ Analyst edits and overrides are captured into enterprise feedback logs, automati
 
 ## Reliability Contract
 
-| Metric | Target | Measurement | Alert Threshold |
-|--------|--------|-------------|-----------------|
-| Accuracy | | | |
-| Hallucination rate | | | |
-| Latency (p95) | | | |
-| Drift velocity | | | |
+| Metric | Target | Alert Threshold | Measurement Method | Consequence / Action |
+| ------ | ------ | --------------- | ------------------ | -------------------- |
+| **Accuracy** | 92% | < 88% | Weekly run on 300 golden dataset rows using LLM-as-a-Judge (GPT-4o) with financial accuracy rubric. | Page on-call & trigger immediate Gold-set audit |
+| **Hallucination Rate** | < 1% | > 2% | Continuous automated evaluation checking output facts against verified CoinDesk Indices (CDI) & news wire ground truth DB. | Auto-rollback model deployment to previous stable version |
+| **Latency (p95)** | < 1,500ms | > 3,000ms for 5 mins | Continuous production monitoring via Datadog tracking end-to-end RAG synthesis latency. | Page on-call & auto-switch non-critical queries to triage model tier |
+| **Drift Velocity** | < 0.5% / week | > 1% decay / week | 4-week rolling accuracy trend analysis measured against weekly updated Golden Dataset. | Trigger emergency Gold-set audit & update domain context vectors |
+
+---
 
 ## HITL Architecture
-<!-- When does a human step in? What's the escalation path? -->
 
-## Red-Team Findings
-*What failure mode did your partner find that you missed?*
+### Trigger: When does a human enter the loop?
+* Model confidence score drops below **60%**.
+* Financial safety / hallucination rubric flag fires on a customer-facing risk brief.
+* Query involves high-ambiguity regulatory filings with direct legal precedent exposure.
 
+### Reviewer: Who reviews?
+* Primary: Rotating Senior Crypto Research Analyst / Compliance PM on-call (Weekday 8am–6pm ET).
+* Secondary: Senior Customer Success Manager (After-hours & weekends).
+
+### Feedback Loop: How do corrections compound?
+* Analyst corrections are automatically pushed into the weekly Golden Dataset candidate pool.
+* Any query receiving **5+ human corrections in a single week** automatically triggers a model retraining candidate and prompt/RAG weighting revision.
 
