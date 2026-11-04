@@ -42,13 +42,28 @@
 
 ## Confidence UX Design
 
-**Approach:** show uncertainty / tiered confidence / human-in-loop trigger
+**Approach:** Combination: Tiered confidence framework with an explicit evidence panel, real-time driver breakdown, and a mandatory human-in-the-loop escalation trigger for high-ambiguity financial claims.
 
-**High confidence (>90%):**
-**Medium confidence (70-90%):**
-**Low confidence (<70%):**
+**Confident (>90%):** UI + Copy Strategy: Full answer rendered immediately. Displays inline citation tags, verified CoinDesk Index (CDI) stream timestamps, and explicit data lineage badges. Institutional analyst can directly approve, edit, or export the audit-ready brief.
 
-**User control surface:**
+**Uncertain (50-90%):** UI + Copy Strategy: Visibly softens the interface. Uses hedged language (e.g., "Preliminary market signals suggest...", "Unverified news reports indicate..."), displays underlying driver scorecards with confidence ranges, and prompts the analyst for clarifying inputs or source validation before allowing memo export.
+
+**Not confident (<50%):** UI + Copy Strategy: Generation blocked. Displays a clear warning: "Insufficient verified data to generate an audit-ready risk brief." Lists missing data sources/evidence and routes the request to an internal analyst queue or manual research workflow.
+
+**User control surface:** 
+
+Compliance admins can tune minimum confidence gates based on fund policy (e.g., 95% for external investor memos vs. 75% for internal desk notes).
+
+Expandable evidence drawer showing underlying vector search results, model confidence breakdown per claim, and raw CDI data points.
+
+Direct inline text editor with feedback tags ("Factually Incorrect", "Missing Context", "Wrong Index Driver").
+
+Analyst edits and overrides are captured into enterprise feedback logs, automatically updating RAG retrieval weights and flagging candidate rows for the Golden Dataset.
+
+- Users adjust the confidence threshold
+- Users see AI reasoning / drivers
+- Users correct & override outputs
+- Corrections feed back into the model / dataset
 
 ## Reliability Contract
 
