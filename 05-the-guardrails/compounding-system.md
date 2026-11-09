@@ -1,22 +1,21 @@
 # Compounding System Design
-
 ## Feedback Loops
 
 | Loop | Input | Output | Compounds? | Status |
 |------|-------|--------|-----------|--------|
-| | | | Y/N | active / broken / missing |
-| | | | Y/N | active / broken / missing |
-| | | | Y/N | active / broken / missing |
+| Recursive Learning | User corrections on generated risk briefs & regulatory summaries | Retrained retrieval weights & verified Golden Dataset candidate rows | Y | active |
+| Cross-Domain Transfer | Real-time CoinDesk Indices (CDI) volatility streams & macro market news | Cross-asset sentiment shift models (e.g., L1 gas fees → DeFi token liquidations) | Y | active |
+| Network Intelligence | Anonymized search volumes & institutional query clusters | Systemic risk anomaly alerts (e.g., spike in SEC regulatory inquiry searches) | Y | active |
 
-**Broken loop identified by partner:**
-**Fix plan:**
+**Broken loop identified by partner:** The Network Intelligence loop is currently siloed at the individual fund level due to strict institutional confidentiality boundaries, preventing cross-firm intelligence sharing.
+**Fix plan:** Implement an aggregated, zero-knowledge telemetry pipeline that anonymizes firm-specific queries to surface macro search volume surges and regulatory anomaly trends across the entire subscriber base without exposing proprietary fund positions or strategies.
 
 ## Context Connectivity
 <!-- How does knowledge flow across teams and domains? Where does it silo? -->
 
-## Governance Policy
+**How knowledge flows:** Knowledge flows dynamically between the real-time CoinDesk editorial newsroom pre-feeds, proprietary CoinDesk Indices (CDI) benchmark data streams, and institutional RAG vector databases.
 
-<!-- Governance Policy, SupportCopilot v1.2 -->
+**Where it silos:** Knowledge silos occur between competing hedge fund accounts due to strict financial privacy firewalls; however, structured cross-domain synthesis safely bridges real-time macro news with underlying token index metrics without cross-contaminating client portfolio data.
 
 ## Governance Policy
 
