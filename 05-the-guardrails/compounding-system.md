@@ -8,6 +8,7 @@
 | Network Intelligence | Anonymized search volumes & institutional query clusters | Systemic risk anomaly alerts (e.g., spike in SEC regulatory inquiry searches) | Y | active |
 
 **Broken loop identified by partner:** The Network Intelligence loop is currently siloed at the individual fund level due to strict institutional confidentiality boundaries, preventing cross-firm intelligence sharing.
+
 **Fix plan:** Implement an aggregated, zero-knowledge telemetry pipeline that anonymizes firm-specific queries to surface macro search volume surges and regulatory anomaly trends across the entire subscriber base without exposing proprietary fund positions or strategies.
 
 ## Context Connectivity
