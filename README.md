@@ -23,7 +23,7 @@
 
 - **Product:** CoinDesk Terminal AI (Autonomous Market & Regulatory Intelligence Engine)
 - **AI Value Archetype:** Oracle
-- **Vulnerability Scores:** _(add: Moat _/5 · Data _/5 · Platform _/5)_
+- **Vulnerability Scores:** _(add: Moat 3/5 · Data 4/5 · Platform 2/5)_
 - **Top Risk:** High exposure to foundational AI model providers native retrieval capabilities, forcing us to rely heavily on our proprietary CoinDesk Indices and exclusive newsroom speed to avoid being commoditized as a generic financial research wrapper.
 - **Confidence:** M
 - **Prototype:** First attempt: https://coindesk-terminal-ai-prototype-rvqf8ppf.v0.build/
