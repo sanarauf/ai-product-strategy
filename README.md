@@ -37,10 +37,10 @@
 
 **Why this won't get copied in 6 months.**
 
-- **Data Flywheel Score:**
+- **Data Flywheel Score:** 12/20
 - **Weakest Loop:** Correction Loop (Score: 2/5) & Network Loop (Score: 2/5)
 - **Top Encroachment Threat:** OpenAI (GPT-4o / Deep Research Agents)
-- **Encroachment Defense:** Build an automated RLHF/RAG correction pipeline: whenever institutional compliance officers edit or correct a synthesized regulatory rule interpretation, automatically convert that edit into a verifie…
+- **Encroachment Defense:** Build an automated RLHF/RAG correction pipeline: whenever institutional compliance officers edit or correct a synthesized regulatory rule interpretation, automatically convert that edit into a verified high-confidence ground-truth anchor for all future retrieval queries across the platform.
 - **Vendor Portability:** Partial
 
 → Details: [`02-the-moat/`](02-the-moat/)
@@ -51,13 +51,13 @@
 
 **Will this make money or bleed it?**
 
-- **Gross Margin (current):**
-- **Gross Margin (AI-adjusted):**
+- **Gross Margin (current):** 95.2%
+- **Gross Margin (AI-adjusted):** 80.0%
 - **Pricing Model:** hybrid (seat base + outcome/usage tier)
 - **Pricing Today → Tomorrow:** $2,500/month flat enterprise user seat (Legacy CoinDesk Data/Terminal SaaS) → $4,500/month base platform fee (includes 5 seats & 250 briefs) + $15/additional risk brief
 - **Total AI COGS / unit:** $165.00
 - **Cascading Strategy:** Triage: Claude 3.5 Haiku / Llama 3 70B (Fast, low-cost extraction); frontier: GPT-4o / Claude 3.5 Sonnet (Complex reasoning & compliance synthesis); ratio 65% Triage / 35% Frontier
-- **Net Margin Shift:**
+- **Net Margin Shift:** -15.2%
 - **Break-even at:**
 
 → Details: [`03-the-margin/`](03-the-margin/)
@@ -69,7 +69,7 @@
 **Why users will trust a probabilistic system.**
 
 - **Reliability Target:**
-- **Golden Dataset:**
+- **Golden Dataset:** 
 - **Confidence UX:** Combination: Tiered confidence framework with an explicit evidence panel, real-time driver breakdown, and a mandatory human-in-the-loop escalation trigger for high-ambiguity financial claims.
 - **HITL Architecture:** ### Trigger: When does a human enter the loop? * Model confidence score drops below **60%**. * Financial safety / hallucination rubric flag fires on a customer-facing risk brief.…
 - **Failure Mode Coverage:**
