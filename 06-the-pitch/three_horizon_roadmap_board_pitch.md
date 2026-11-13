@@ -39,20 +39,20 @@
 ## Board Pitch
 
 **Thesis (1 sentence):**
-We are transforming CoinDesk Terminal from a static data feed into an autonomous, audit-ready market and regulatory intelligence oracle that turns our proprietary CoinDesk Indices and newsroom velocity into sub-5-second institutional risk briefs.
+We are transforming the CoinDesk Terminal from a static data feed into a sub-5-second autonomous research oracle, protecting our $2,500 legacy seat revenue against generic AI wrappers by embedding our proprietary CoinDesk Indices and real-time newsroom speed directly into institutional compliance workflows.
 
 **The case:**
-1. **Why now:** Institutional crypto adoption is accelerating under heightened SEC/FINRA and EU AI Act scrutiny, yet compliance and research analysts are dangerously pasting CoinDesk news into unverified consumer LLMs ("Shadow AI") because legacy terminals lack real-time synthesis.
-2. **What's defensible:** Foundational models cannot replicate real-time proprietary CoinDesk Index (CDI) correlations, exclusive newsroom speed, or our editorial-gated compliance flywheel—where verified institutional rule corrections compound into a proprietary ground-truth RAG dataset.
-3. **The economics:** Shifting from a $2,500/month flat single-seat SaaS model to a $4,500/month platform tier (5 seats + 250 briefs) plus $15/overage brief expands enterprise ACV while a 65/35 Triage-to-Frontier model cascade protects an 80% AI-adjusted gross margin.
+1. Why now: Institutional crypto analysts are already leaking proprietary queries to generic tools like ChatGPT Deep Research; we must productize our exclusive newsroom velocity and CoinDesk Indices before foundation model providers commoditize our data wrapper.
+2. What's defensible: Our defensibility rests on proprietary CoinDesk Index (CDI) correlation data combined with a human-gated editorial correction queue that converts verified institutional compliance edits into exclusive ground-truth anchors.
+3. The economics: We are shifting from a flat $2,500/seat SaaS model to a $4,500/month platform tier (5 seats + 250 briefs) with $15 overage risk briefs, using a 65/35 model cascading split (Haiku/Llama 3 vs. GPT-4o/Sonnet) to protect an 80% AI-adjusted gross margin.
 
 **The risks:**
-1. **Trust / failure modes:** Regulatory hallucinations could destroy institutional credibility; we mitigate this via a 150-row Golden Dataset, inline citation panels, and asynchronous HITL escalation for <60% confidence claims so we never breach our 5-second latency SLA.
-2. **Scale / governance:** Multi-tenant RAG learning risks cross-client data leakage or index poisoning, and high-risk AI rules require strict auditability; we enforce tenant isolation, editorial verification gates, and SEC Rule 17a-4 immutable WORM logging from day one.
-3. **Competitive:** OpenAI Deep Research or BloombergGPT could commoditize generic financial summarization; we defend via multi-provider LLM portability, deep CDI data integration, and eventual fine-tuning of a proprietary CoinDesk crypto-regulatory SLM.
+1. Trust / failure modes: A hallucinated regulatory interpretation could expose institutional clients to severe compliance breaches; we mitigate this via a tiered confidence panel, mandatory citation evidence, and an asynchronous human-in-the-loop review queue for ambiguous claims.
+2. Scale / governance: At 10x scale during high-volatility market crashes, synchronous human review will destroy our 5-second SLA; we enforce strict autonomy boundaries (zero trade execution) and maintain weekly automated regression audits against a 150-row Golden Dataset under SEC Rule 17a-4 compliant WORM storage.
+3. Competitive: If post-launch pilot feedback reveals institutional analysts reject AI briefs due to unresolvable regulatory hallucinations, or if latency exceeds 5 seconds during market volatility, we hit our predefined kill criteria and sunset the terminal AI product line.
 
 **The ask:**
-Approve Horizon 1 engineering and editorial ops allocation for the next 90 days to ship the real-time RAG pipeline, confidence UX, and 12-account concierge pilot, gated by our strict kill criteria (<5s latency SLA and ≥80% institutional analyst brief acceptance).
+$250K Q1 seed funding for API inference credits, WORM compliance storage, and evaluation infrastructure, backed by 2 AI/ML engineers, 1 data pipeline engineer, and 0.5 legal/editorial analyst over a 3-month Horizon 1 pilot validation window. If funded, non-essential internal wiki migrations and legacy marketing footer updates are paused to reallocate engineering focus entirely to the terminal core.
 
 ---
 
