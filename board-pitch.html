@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoinDesk Terminal AI — Leadership Pitch</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #07162C;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  padding: 72px 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  background: radial-gradient(ellipse at 30% 40%, rgba(57,210,192,0.16) 0%, #07162C 62%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+section.visible { opacity: 1; transform: translateY(0); }
+section.centered { align-items: center; text-align: center; }
+section.centered .inner { text-align: center; }
+
+.inner { max-width: 960px; width: 100%; }
+
+h1 { font-size: 56px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+h2 { font-size: 38px; font-weight: 800; color: #fff; margin-bottom: 22px; line-height: 1.15; }
+.section-label {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 3px;
+  color: #39d2c0; margin-bottom: 12px; font-weight: 700;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+
+.body { font-size: 18px; line-height: 1.65; color: #e2e8f0; max-width: 840px; }
+.body strong { color: #fff; font-weight: 700; }
+.body em { color: #5fe6d4; font-style: normal; font-weight: 600; }
+
+/* Hero */
+.hero { justify-content: center; align-items: center; text-align: center; }
+.hero-inner { max-width: 900px; }
+.hero-eyebrow {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #39d2c0;
+  padding: 6px 16px;
+  border: 1px solid rgba(57,210,192,0.3);
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+.hero h1 { font-size: 58px; margin-bottom: 24px; }
+.hero-thesis {
+  font-size: 24px;
+  font-weight: 500;
+  color: #f8fafc;
+  line-height: 1.45;
+  max-width: 840px;
+  margin: 0 auto;
+}
+.hero-thesis strong { font-weight: 700; color: #fff; }
+.hero-thesis em { color: #5fe6d4; font-style: normal; font-weight: 600; }
+.scroll-hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  font-size: 12px; color: #94a3b8;
+  animation: pulse 2s ease infinite;
+}
+.scroll-hint span { display: block; font-size: 16px; margin-top: 2px; color: #39d2c0; }
+@keyframes pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+/* Lead pull-quote */
+.lead {
+  font-size: 26px; font-weight: 600;
+  color: #fff; line-height: 1.35;
+  margin: 0 0 20px; max-width: 880px;
+  letter-spacing: -0.01em;
+}
+.lead em { color: #5fe6d4; font-style: normal; font-weight: 700; }
+.lead strong { color: #fff; font-weight: 800; }
+
+/* Cover credentials strip */
+.cover-strip {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  margin-top: 28px;
+}
+.cover-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 12px; color: #ffffff;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+.cover-pill .cp-label {
+  color: #39d2c0; text-transform: uppercase;
+  font-weight: 700; margin-right: 8px;
+  letter-spacing: 1px;
+}
+
+/* Inline tag */
+.inline-tag {
+  display: inline-flex; align-items: baseline; gap: 10px;
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.22);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-top: 20px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 13px; color: #fff;
+}
+.inline-tag .it-label {
+  color: #f87171; text-transform: uppercase; font-weight: 700;
+  font-size: 11px; letter-spacing: 1.5px;
+}
+
+/* Stat tiles */
+.stat-strip {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-top: 24px; max-width: 880px;
+}
+.stat-tile {
+  flex: 1 1 190px;
+  background: rgba(57,210,192,0.06);
+  border: 1px solid rgba(57,210,192,0.22);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.stat-label {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: #5fe6d4; margin-bottom: 8px;
+}
+.stat-value {
+  font-size: 26px; font-weight: 800;
+  color: #fff; line-height: 1.15;
+}
+.stat-detail {
+  font-size: 12px; color: #cbd5e1;
+  margin-top: 6px; line-height: 1.4;
+}
+
+/* Risk grid */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 8px;
+}
+.risk-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid #f87171;
+  border-radius: 10px;
+  padding: 20px 20px;
+}
+.risk-card:nth-child(2) { border-left-color: #f0c040; }
+.risk-card:nth-child(3) { border-left-color: #60a5fa; }
+.risk-label {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: #f87171; margin-bottom: 10px;
+}
+.risk-card:nth-child(2) .risk-label { color: #f0c040; }
+.risk-card:nth-child(3) .risk-label { color: #60a5fa; }
+.risk-body { font-size: 14.5px; line-height: 1.6; color: #e2e8f0; }
+.risk-body strong { color: #fff; }
+
+/* Roadmap glance */
+.roadmap-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 8px;
+}
+.horizon-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 3px solid #39d2c0;
+  border-radius: 10px;
+  padding: 20px 20px;
+}
+.horizon-card:nth-child(2) { border-top-color: #f0c040; }
+.horizon-card:nth-child(3) { border-top-color: #60a5fa; }
+.horizon-label {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: #39d2c0; margin-bottom: 4px;
+}
+.horizon-card:nth-child(2) .horizon-label { color: #f0c040; }
+.horizon-card:nth-child(3) .horizon-label { color: #60a5fa; }
+.horizon-title {
+  font-size: 16px; font-weight: 700;
+  color: #fff; margin-bottom: 12px;
+}
+.horizon-list { list-style: none; padding: 0; margin: 0; }
+.horizon-list li {
+  font-size: 13px; color: #e2e8f0; line-height: 1.45;
+  padding: 7px 0 7px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.horizon-list li:before {
+  content: '·'; position: absolute;
+  left: 2px; top: 5px;
+  color: #39d2c0; font-weight: 900; font-size: 16px;
+}
+.horizon-card:nth-child(2) .horizon-list li:before { color: #f0c040; }
+.horizon-card:nth-child(3) .horizon-list li:before { color: #60a5fa; }
+.horizon-list li:last-child { border-bottom: none; }
+.horizon-list code {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px;
+  color: #5fe6d4;
+  background: rgba(57,210,192,0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.cut-banner {
+  margin-top: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.22);
+  font-size: 13px;
+  color: #fca5a5;
+}
+.cut-banner strong { color: #fff; }
+
+/* Ask slide */
+.ask-stats {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  justify-content: center;
+  margin: 12px auto 24px;
+  max-width: 920px;
+}
+.ask-tile {
+  flex: 1 1 240px;
+  background: linear-gradient(135deg, rgba(57,210,192,0.12) 0%, rgba(18,65,176,0.12) 100%);
+  border: 1px solid rgba(57,210,192,0.32);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.ask-tile-label {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: #5fe6d4; margin-bottom: 10px;
+}
+.ask-tile-value {
+  font-size: 26px; font-weight: 800;
+  color: #fff; line-height: 1.25;
+}
+.ask-context {
+  font-size: 16px; color: #e2e8f0;
+  max-width: 780px; margin: 0 auto;
+  line-height: 1.65;
+  padding: 18px 22px;
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid #39d2c0;
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+}
+.ask-context strong { color: #fff; }
+
+/* Q&A */
+.qa-inner h1 { font-size: 88px; color: #39d2c0; }
+.qa-inner .subtitle { font-size: 20px; color: #cbd5e1; margin-top: 8px; }
+
+/* Nav dots + progress bar */
+.nav-dots {
+  position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 6px; z-index: 100;
+}
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #334155; border: none; cursor: pointer;
+  transition: all 0.3s; position: relative;
+}
+.nav-dot.active { background: #39d2c0; box-shadow: 0 0 8px rgba(57,210,192,0.6); transform: scale(1.4); }
+.nav-dot:hover { background: rgba(57,210,192,0.7); }
+.nav-dot .tooltip {
+  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+  background: #0c2244; color: #ffffff; padding: 4px 10px; border-radius: 6px;
+  font-size: 11px; white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s; border: 1px solid rgba(57,210,192,0.25);
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+.nav-dot:hover .tooltip { opacity: 1; }
+
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 100;
+  background: linear-gradient(90deg, #1241B0, #39d2c0);
+  transition: width 0.3s ease;
+}
+
+.help-hint {
+  position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; color: #94a3b8; font-family: 'SFMono-Regular', Consolas, monospace;
+  opacity: 0.75; pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  section { padding: 60px 24px 40px; }
+  .hero h1 { font-size: 40px; }
+  .hero-thesis { font-size: 19px; }
+  h2 { font-size: 28px; }
+  .lead { font-size: 20px; }
+  .risk-grid, .roadmap-grid { grid-template-columns: 1fr; }
+  .ask-stats { flex-direction: column; }
+  .nav-dots { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar" style="width:0%;"></div>
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- Slide 1: Cover -->
+<section class="hero" data-title="Cover">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">New Product Pitch &middot; CEO &amp; Leadership Team</div>
+    <h1>CoinDesk Terminal AI</h1>
+    <p class="hero-thesis">We are building a <em>real-time AI analyst for institutional crypto desks</em>—turning CoinDesk’s breaking newsroom scoops and exclusive price indices into <strong>cited, compliance-ready risk summaries in under one minute</strong>.</p>
+    <div class="cover-strip">
+      <div class="cover-pill"><span class="cp-label">Stage</span>New 0-to-1 Product</div>
+      <div class="cover-pill"><span class="cp-label">Gross Margin</span>80.0% – 81.7%</div>
+      <div class="cover-pill"><span class="cp-label">Main Rival</span>OpenAI Deep Research</div>
+      <div class="cover-pill"><span class="cp-label">Speed Target</span>&lt; 1 Minute</div>
+    </div>
+    <div class="scroll-hint">Scroll or press &darr; <span>&#8595;</span></div>
+  </div>
+</section>
+
+<!-- Slide 2: Why Now -->
+<section data-title="Why Now">
+  <div class="inner">
+    <div class="section-label">The Case &middot; 1 of 3</div>
+    <h2>Why now</h2>
+    <div class="lead">Analysts already spend <strong>~$900/month per desk on outside AI tools</strong>—pasting CoinDesk articles into Claude to write memos and checking SEC links in Perplexity.</div>
+    <div class="body">ChatGPT and Perplexity can summarize public articles, but they cannot see <strong>CoinDesk Indices (CDI)</strong> or our reporters' scoops before publication. We have <strong>12 institutional firms</strong> ready to test a 4-week pilot in Week 1, giving us a clear window to own this workflow before generic chatbots catch up.</div>
+  </div>
+</section>
+
+<!-- Slide 3: Why We Win -->
+<section data-title="Why We Win">
+  <div class="inner">
+    <div class="section-label">The Case &middot; 2 of 3</div>
+    <h2>Why we won't get copied in 6 months</h2>
+    <div class="lead">Our edge is <strong>exclusive price data + newsroom speed</strong> paired with <em>human-verified compliance edits</em>.</div>
+    <div class="body">If we automatically train the AI on every user edit, bad fixes will corrupt answers or leak client secrets. Instead, when a compliance officer fixes a legal summary, we save it in a <strong>private client queue</strong>. CoinDesk’s legal analysts verify the fix within 24 hours before adding it to our master database—building a trusted library of crypto-legal answers OpenAI cannot scrape.</div>
+    <div class="inline-tag"><span class="it-label">Top Threat</span>OpenAI (GPT-4o / Deep Research) &middot; Protected by Multi-Model Backup Routing</div>
+  </div>
+</section>
+
+<!-- Slide 4: The Math -->
+<section data-title="The Math">
+  <div class="inner">
+    <div class="section-label">The Case &middot; 3 of 3</div>
+    <h2>The math</h2>
+    <div class="lead"><strong>80.0%–81.7% gross margin</strong> on a <strong>$4,500/month base plan</strong> + $15 per extra brief. Unit-profitable from Customer #1.</div>
+    <div class="body">Each base account gets 5 seats and 250 briefs ($4,500 revenue vs. $825 running cost = <strong>81.7% margin</strong>). At 10 seats and 500 briefs ($8,250 revenue vs. $1,650 cost), margin holds at <strong>80.0%</strong>. We protect margins by sending 65% of simple tasks to fast, cheap models (Haiku/Llama 3) and saving expensive models (GPT-4o/Sonnet) for the hardest 35% of legal analysis.</div>
+    <div class="stat-strip">
+      <div class="stat-tile">
+        <div class="stat-label">Gross Margin</div>
+        <div class="stat-value">80.0–81.7%</div>
+        <div class="stat-detail">$3,675–$6,600 monthly gross profit/acct</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">Pricing</div>
+        <div class="stat-value">$4,500/mo</div>
+        <div class="stat-detail">5 seats + 250 briefs ($15/extra brief)</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">Running Cost</div>
+        <div class="stat-value">$165/seat</div>
+        <div class="stat-detail">$57 AI APIs · $65 data · $28 servers · $15 QA</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">Break-Even</div>
+        <div class="stat-value">1 Account</div>
+        <div class="stat-detail">56 accounts pay back $250K seed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 5: What Could Go Wrong -->
+<section data-title="The Risks">
+  <div class="inner">
+    <div class="section-label">Risks &amp; Controls</div>
+    <h2>What could go wrong</h2>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <div class="risk-label">1. Legal Hallucinations</div>
+        <div class="risk-body">A wrong regulatory summary could get a client in trouble. We test every release against <strong>150 ground-truth questions</strong> (&lt;1% false facts), link every claim to a primary source, and <strong>block outputs completely if confidence is under 50%</strong>.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-label">2. Slowdowns at 10x Scale</div>
+        <div class="risk-body">Traffic spikes during market crashes could push generation past our <strong>1-minute speed limit</strong>. Medium-confidence briefs (50%–75%) show a yellow warning badge immediately while a human checks them in the background. Every prompt and output is saved in uneditable <strong>SEC Rule 17a-4 logs</strong>.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-label">3. When We Walk Away</div>
+        <div class="risk-body">During our 4-week pilot with 12 firms, if analysts reject the briefs (&lt;80% acceptance) or speed drops past <strong>1 minute</strong> during volatile markets, we <strong>kill the standalone web app</strong> and sell the backend as a simple data API for Bloomberg and Refinitiv.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 6: Roadmap -->
+<section data-title="Roadmap">
+  <div class="inner">
+    <div class="section-label">Execution Plan &middot; 14 Prioritized Tasks</div>
+    <h2>What we ship and when</h2>
+    <div class="roadmap-grid">
+      <div class="horizon-card">
+        <div class="horizon-label">Weeks 1–4 &middot; Ship</div>
+        <div class="horizon-title">Core Engine &amp; 12-Firm Pilot</div>
+        <ul class="horizon-list">
+          <li>Live CoinDesk Index &amp; newsroom feed (&lt;1 min total) <code>Bet</code></li>
+          <li>Confidence badges, source checker &amp; memo export <code>Contract</code></li>
+          <li>65/35 cheap-to-frontier model router <code>Margin</code></li>
+          <li>150-question test suite + weekly automated checks <code>Contract</code></li>
+          <li>SEC Rule 17a-4 audit logs &amp; prompt-hack filters <code>Guardrails</code></li>
+          <li>4-week pilot with 12 institutional firms <code>Bet</code></li>
+        </ul>
+      </div>
+      <div class="horizon-card">
+        <div class="horizon-label">Months 1–3 &middot; Validate</div>
+        <div class="horizon-title">Legal Flywheel &amp; Billing</div>
+        <ul class="horizon-list">
+          <li>Legal-verified compliance edit queue <code>Moat</code></li>
+          <li>Background human review for 50–75% confidence briefs <code>Contract</code></li>
+          <li>Usage billing ($4,500 base + $15 extra briefs) <code>Margin</code></li>
+          <li>Backup model routing (Anthropic + AWS Bedrock) <code>Moat</code></li>
+          <li><em>After US pilot:</em> EU AI Act compliance docs <code>Guardrails</code></li>
+        </ul>
+      </div>
+      <div class="horizon-card">
+        <div class="horizon-label">Months 3–6 &middot; Explore</div>
+        <div class="horizon-title">Cost Cuts &amp; New Features</div>
+        <ul class="horizon-list">
+          <li><strong>Protected Bet:</strong> Custom crypto-legal model (-60% API cost) <code>Margin/Moat</code></li>
+          <li>Anonymized cross-firm regulatory alert feed <code>Moat</code></li>
+          <li>Opt-in agent that checks laws vs. client token holdings <code>Bet</code></li>
+        </ul>
+      </div>
+    </div>
+    <div class="cut-banner"><strong>Cut Today:</strong> Marketing newsletter footer redesign &amp; internal HR wiki migration — 100% of engineering time goes to Terminal AI.</div>
+  </div>
+</section>
+
+<!-- Slide 7: The Ask -->
+<section class="centered" data-title="The Ask">
+  <div class="inner">
+    <div class="section-label">Investment Request</div>
+    <h2>What we need</h2>
+    <div class="ask-stats">
+      <div class="ask-tile">
+        <div class="ask-tile-label">Q1 Budget</div>
+        <div class="ask-tile-value">$250K</div>
+      </div>
+      <div class="ask-tile">
+        <div class="ask-tile-label">Team</div>
+        <div class="ask-tile-value">3.5 People</div>
+      </div>
+      <div class="ask-tile">
+        <div class="ask-tile-label">Checkpoint</div>
+        <div class="ask-tile-value">3 Months</div>
+      </div>
+    </div>
+    <div class="ask-context">
+      <strong>How it's spent:</strong> $250K covers AI API credits, SEC-compliant log storage, and test infrastructure, plus <strong>2 AI engineers, 1 data engineer, and 0.5 legal/editorial analyst</strong> for 3 months. We pause internal HR wiki and newsletter footer work immediately. Signing <strong>~56 accounts</strong> ($4,500/mo base) pays back the entire $250K investment.
+    </div>
+  </div>
+</section>
+
+<!-- Slide 8: Q&A -->
+<section class="centered" data-title="Q&amp;A">
+  <div class="inner qa-inner">
+    <h1>Q&amp;A</h1>
+    <p class="subtitle">CoinDesk Terminal AI &middot; Q1 Review</p>
+  </div>
+</section>
+
+<div class="help-hint">&uarr; &darr; or Spacebar to navigate</div>
+
+<script>
+const sections = Array.from(document.querySelectorAll('section'));
+const navDotsContainer = document.getElementById('navDots');
+const progressBar = document.getElementById('progressBar');
+let currentIdx = 0;
+
+sections.forEach((sec, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'nav-dot';
+  dot.setAttribute('aria-label', sec.dataset.title || 'Slide ' + (i + 1));
+  const tip = document.createElement('span');
+  tip.className = 'tooltip';
+  tip.textContent = sec.dataset.title || ('Slide ' + (i + 1));
+  dot.appendChild(tip);
+  dot.addEventListener('click', () => sections[i].scrollIntoView({ behavior: 'smooth' }));
+  navDotsContainer.appendChild(dot);
+});
+
+const navDots = Array.from(document.querySelectorAll('.nav-dot'));
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      const idx = sections.indexOf(e.target);
+      if (idx >= 0) {
+        currentIdx = idx;
+        navDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        progressBar.style.width = ((idx + 1) / sections.length * 100) + '%';
+      }
+    }
+  });
+}, { threshold: 0.45 });
+sections.forEach(s => io.observe(s));
+
+document.addEventListener('keydown', (e) => {
+  const key = e.key;
+  if (key === 'ArrowDown' || key === 'PageDown' || key === ' ') {
+    e.preventDefault();
+    const next = Math.min(currentIdx + 1, sections.length - 1);
+    sections[next].scrollIntoView({ behavior: 'smooth' });
+  } else if (key === 'ArrowUp' || key === 'PageUp') {
+    e.preventDefault();
+    const prev = Math.max(currentIdx - 1, 0);
+    sections[prev].scrollIntoView({ behavior: 'smooth' });
+  } else if (key === 'Home') {
+    e.preventDefault();
+    sections[0].scrollIntoView({ behavior: 'smooth' });
+  } else if (key === 'End') {
+    e.preventDefault();
+    sections[sections.length - 1].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+if (sections[0]) sections[0].classList.add('visible');
+</script>
+
+</body>
+</html>
